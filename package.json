@@ -20,10 +20,7 @@
   "bugs": {
     "url": "https://github.com/DEGoodmanWilson/easy-peasy-bot-app/issues"
   },
-  "homepage": "https://github.com/DEGoodmanWilson/easy-peasy-bot-app#readme",
-  "engines": {
-    "node": "5.1.1"
-  },
+  "homepage": "https://github.com/DEGoodmanWilson/easy-peasy-bot-app#readme",  
   "dependencies": {
     "botkit": "0.2.2",
     "botkit-storage-mongo": "^1.0.2",
