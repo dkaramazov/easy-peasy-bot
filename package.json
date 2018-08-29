@@ -1,5 +1,5 @@
 {
-  "name": "easy-peasy-bot",
+  "name": "bill-bot",
   "version": "1.0.0",
   "description": "The awesomest bot evar.",
   "main": "index.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DEGoodmanWilson/easy-peasy-bot-app.git"
+    "url": "git+https://github.com/dkaramazov/easy-peasy-bot.git"
   },
   "keywords": [
     "slack",
@@ -27,6 +27,7 @@
   "dependencies": {
     "botkit": "0.2.2",
     "botkit-storage-mongo": "^1.0.2",
+    "dotenv": "^6.0.0",
     "mongodb": "^1.4.39"
   }
 }

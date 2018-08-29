@@ -1,3 +1,5 @@
+var dotenv = require('dotenv').config();
+
 /**
  * A Bot for Slack!
  */
@@ -82,27 +84,32 @@ controller.on('rtm_close', function (bot) {
 // BEGIN EDITING HERE!
 
 controller.on('bot_channel_join', function (bot, message) {
-    bot.reply(message, "I'm here!")
+    bot.reply(message, "What do you want???")
 });
 
 controller.hears('hello', 'direct_message', function (bot, message) {
     bot.reply(message, 'Hello!');
 });
 
+controller.hears(['think', 'idea', 'why'], 'direct_mention,mention,direct_message', function(bot,message) {
+    var billQuotes = ['That is terrible!', 'Why would they do it that way?', 'Of course they\'d do it the dumbest way possible', 'It\'s the Trialcard way.', 'This is Trialcard!'];
+    var billMessage = billQuotes[Math.floor(Math.random() * billQuotes.length)];
+    bot.reply(message, billMessage);
+});
 
 /**
  * AN example of what could be:
  * Any un-handled direct mention gets a reaction and a pat response!
  */
-//controller.on('direct_message,mention,direct_mention', function (bot, message) {
-//    bot.api.reactions.add({
-//        timestamp: message.ts,
-//        channel: message.channel,
-//        name: 'robot_face',
-//    }, function (err) {
-//        if (err) {
-//            console.log(err)
-//        }
-//        bot.reply(message, 'I heard you loud and clear boss.');
-//    });
-//});
+controller.on('direct_message,mention,direct_mention', function (bot, message) {
+   bot.api.reactions.add({
+       timestamp: message.ts,
+       channel: message.channel,
+       name: 'robot_face',
+   }, function (err) {
+       if (err) {
+           console.log(err)
+       }
+       bot.reply(message, 'What do you want???');
+   });
+});
