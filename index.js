@@ -68,14 +68,14 @@ if (process.env.TOKEN || process.env.SLACK_TOKEN) {
  * TODO: fixed b0rked reconnect behavior
  */
 // Handle events related to the websocket connection to Slack
-controller.on('rtm_open', function (bot) {
-    console.log('** The RTM api just connected!');
-});
+// controller.on('rtm_open', function (bot) {
+//     console.log('** The RTM api just connected!');
+// });
 
-controller.on('rtm_close', function (bot) {
-    console.log('** The RTM api just closed');
-    // you may want to attempt to re-open
-});
+// controller.on('rtm_close', function (bot) {
+//     console.log('** The RTM api just closed');
+//     // you may want to attempt to re-open
+// });
 
 
 /**
