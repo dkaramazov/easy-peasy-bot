@@ -28,17 +28,17 @@ function onInstallation(bot, installer) {
  * Configure the persistence options
  */
 
-var config = {};
-if (process.env.MONGOLAB_URI) {
-    var BotkitStorage = require('botkit-storage-mongo');
-    config = {
-        storage: BotkitStorage({mongoUri: process.env.MONGOLAB_URI}),
-    };
-} else {
-    config = {
-        json_file_store: ((process.env.TOKEN)?'./db_slack_bot_ci/':'./db_slack_bot_a/'), //use a different name if an app or CI
-    };
-}
+// var config = {};
+// if (process.env.MONGOLAB_URI) {
+//     var BotkitStorage = require('botkit-storage-mongo');
+//     config = {
+//         storage: BotkitStorage({mongoUri: process.env.MONGOLAB_URI}),
+//     };
+// } else {
+//     config = {
+//         json_file_store: ((process.env.TOKEN)?'./db_slack_bot_ci/':'./db_slack_bot_a/'), //use a different name if an app or CI
+//     };
+// }
 
 /**
  * Are being run as an app or a custom integration? The initialization will differ, depending
@@ -68,14 +68,14 @@ if (process.env.TOKEN || process.env.SLACK_TOKEN) {
  * TODO: fixed b0rked reconnect behavior
  */
 // Handle events related to the websocket connection to Slack
-// controller.on('rtm_open', function (bot) {
-//     console.log('** The RTM api just connected!');
-// });
+controller.on('rtm_open', function (bot) {
+    console.log('** The RTM api just connected!');
+});
 
-// controller.on('rtm_close', function (bot) {
-//     console.log('** The RTM api just closed');
-//     // you may want to attempt to re-open
-// });
+controller.on('rtm_close', function (bot) {
+    console.log('** The RTM api just closed');
+    // you may want to attempt to re-open
+});
 
 
 /**
