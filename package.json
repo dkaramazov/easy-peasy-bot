@@ -16,12 +16,13 @@
     "bot"
   ],
   "author": "Josiah",
-  "license": "MIT",  
-  "homepage": "https://github.com/DEGoodmanWilson/easy-peasy-bot-app#readme",  
+  "license": "MIT",
+  "homepage": "https://github.com/DEGoodmanWilson/easy-peasy-bot-app#readme",
   "dependencies": {
     "botkit": "0.2.2",
     "botkit-storage-mongo": "^1.0.2",
     "dotenv": "^6.0.0",
+    "express": "^4.16.3",
     "mongodb": "^1.4.39"
   }
 }
