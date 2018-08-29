@@ -92,7 +92,7 @@ controller.hears('hello', 'direct_message', function (bot, message) {
 });
 
 controller.hears(['think', 'idea', 'why'], 'direct_mention,mention,direct_message', function (bot, message) {
-    var billQuotes = ['That is terrible!', 'Why would they do it that way?', 'Of course they\'d do it the dumbest way possible', 'It\'s the Trialcard way.', 'This is Trialcard!'];
+    var billQuotes = ['That is terrible!', 'Why would they do it that way?', 'Of course they\'d do it the dumbest way possible', 'It\'s the Trialcard way.', 'This is Trialcard!', 'I hate this almost as much as I hate your face!', 'I don\'t know what you\'re talking about.'];
     var billMessage = billQuotes[Math.floor(Math.random() * billQuotes.length)];
     bot.reply(message, billMessage);
 });
