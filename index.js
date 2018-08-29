@@ -12,7 +12,7 @@ require('dotenv').config();
 
 function onInstallation(bot, installer) {
     if (installer) {
-        bot.startPrivateConversation({user: installer}, function (err, convo) {
+        bot.startPrivateConversation({ user: installer }, function (err, convo) {
             if (err) {
                 console.log(err);
             } else {
@@ -28,17 +28,17 @@ function onInstallation(bot, installer) {
  * Configure the persistence options
  */
 
-// var config = {};
-// if (process.env.MONGOLAB_URI) {
-//     var BotkitStorage = require('botkit-storage-mongo');
-//     config = {
-//         storage: BotkitStorage({mongoUri: process.env.MONGOLAB_URI}),
-//     };
-// } else {
-//     config = {
-//         json_file_store: ((process.env.TOKEN)?'./db_slack_bot_ci/':'./db_slack_bot_a/'), //use a different name if an app or CI
-//     };
-// }
+var config = {};
+if (process.env.MONGOLAB_URI) {
+    var BotkitStorage = require('botkit-storage-mongo');
+    config = {
+        storage: BotkitStorage({ mongoUri: process.env.MONGOLAB_URI }),
+    };
+} else {
+    config = {
+        json_file_store: ((process.env.TOKEN) ? './db_slack_bot_ci/' : './db_slack_bot_a/'), //use a different name if an app or CI
+    };
+}
 
 /**
  * Are being run as an app or a custom integration? The initialization will differ, depending
@@ -91,7 +91,7 @@ controller.hears('hello', 'direct_message', function (bot, message) {
     bot.reply(message, 'Hello!');
 });
 
-controller.hears(['think', 'idea', 'why'], 'direct_mention,mention,direct_message', function(bot,message) {
+controller.hears(['think', 'idea', 'why'], 'direct_mention,mention,direct_message', function (bot, message) {
     var billQuotes = ['That is terrible!', 'Why would they do it that way?', 'Of course they\'d do it the dumbest way possible', 'It\'s the Trialcard way.', 'This is Trialcard!'];
     var billMessage = billQuotes[Math.floor(Math.random() * billQuotes.length)];
     bot.reply(message, billMessage);
@@ -102,14 +102,14 @@ controller.hears(['think', 'idea', 'why'], 'direct_mention,mention,direct_messag
  * Any un-handled direct mention gets a reaction and a pat response!
  */
 controller.on('direct_message,mention,direct_mention', function (bot, message) {
-   bot.api.reactions.add({
-       timestamp: message.ts,
-       channel: message.channel,
-       name: 'robot_face',
-   }, function (err) {
-       if (err) {
-           console.log(err)
-       }
-       bot.reply(message, 'What do you want???');
-   });
+    bot.api.reactions.add({
+        timestamp: message.ts,
+        channel: message.channel,
+        name: 'robot_face',
+    }, function (err) {
+        if (err) {
+            console.log(err)
+        }
+        bot.reply(message, 'What do you want???');
+    });
 });
