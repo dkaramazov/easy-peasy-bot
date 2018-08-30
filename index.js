@@ -132,26 +132,7 @@ router.get('/', (req, res) => {
 expressApp.use('/', router);
 
 var billQuotes = [];
-base('Quotes').select({
-    // Selecting the first 3 records in Grid view:
-    maxRecords: 300,
-    view: "Grid view"
-}).eachPage(function page(records, fetchNextPage) {
-    // This function (`page`) will get called for each page of records.
 
-    records.forEach(function (record) {
-        billQuotes.push(record.get('quote'));
-        console.log('Retrieved', record.get('Name'));
-    });
-
-    // To fetch the next page of records, call `fetchNextPage`.
-    // If there are more records, `page` will get called again.
-    // If there are no more records, `done` will get called.
-    fetchNextPage();
-
-}, function done(err) {
-    if (err) { console.error(err); return; }
-});
 
 controller.on('bot_channel_join', function (bot, message) {
     bot.reply(message, "What do you want???")
@@ -162,16 +143,29 @@ controller.hears('hello', 'direct_message', function (bot, message) {
 });
 
 controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help'], 'direct_mention,mention,direct_message', function (bot, message) {
-    // var billQuotes = [
-    //     'That is terrible!',
-    //     'Why would they do it that way?',
-    //     'Of course they\'d do it the dumbest way possible',
-    //     'It\'s the Trialcard way.', 'This is Trialcard!',
-    //     'I hate this almost as much as I hate your face!',
-    //     'I don\'t know what you\'re talking about.'
-    // ];
-    var billMessage = billQuotes[Math.floor(Math.random() * billQuotes.length)];
-    bot.reply(message, billMessage);
+    var billQuotes = [];
+    base('Quotes').select({
+        // Selecting the first 3 records in Grid view:
+        maxRecords: 300,
+        view: "Grid view"
+    }).eachPage(function page(records, fetchNextPage) {
+        // This function (`page`) will get called for each page of records.
+
+        records.forEach(function (record) {
+            billQuotes.push(record.get('quote'));
+            console.log('Retrieved', record.get('Name'));
+        });
+
+        // To fetch the next page of records, call `fetchNextPage`.
+        // If there are more records, `page` will get called again.
+        // If there are no more records, `done` will get called.
+        fetchNextPage();
+
+    }, function done(err) {        
+        if (err) { console.error(err); return; }
+        var billMessage = billQuotes[Math.floor(Math.random() * billQuotes.length)];
+        bot.reply(message, billMessage);
+    });
 });
 
 /**
