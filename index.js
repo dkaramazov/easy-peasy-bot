@@ -171,7 +171,7 @@ controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help'], 'direct_me
         // This function (`page`) will get called for each page of records.
 
         records.forEach(function (record) {
-            billQuotes.push(record.get('quote'));
+            tempQuotes.push(record.get('quote'));
             console.log('Retrieved', record.get('Name'));
         });
 
@@ -182,6 +182,7 @@ controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help'], 'direct_me
 
     }, function done(err) {        
         if (err) { console.error(err); return; }
+        billQuotes = tempQuotes;
         var billMessage = billQuotes[Math.floor(Math.random() * billQuotes.length)];
         bot.reply(message, billMessage);
     });
