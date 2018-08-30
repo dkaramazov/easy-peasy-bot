@@ -90,7 +90,7 @@ controller.on('rtm_close', function (bot) {
  * Core bot logic goes here!
  */
 var billQuotes = [];
-
+var tempQuotes = [];
 base('Quotes').select({
     // Selecting the first 3 records in Grid view:
     maxRecords: 300,
@@ -99,7 +99,7 @@ base('Quotes').select({
     // This function (`page`) will get called for each page of records.
 
     records.forEach(function (record) {
-        billQuotes.push(record.get('quote'));
+        tempQuotes.push(record.get('quote'));
         console.log('Retrieved', record.get('Name'));
     });
 
@@ -110,6 +110,7 @@ base('Quotes').select({
 
 }, function done(err) {        
     if (err) { console.error(err); return; }    
+    billQuotes = tempQuotes;
 });
 
 router.post('/quote', (req, res) => {
