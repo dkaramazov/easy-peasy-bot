@@ -1,10 +1,17 @@
 require('dotenv').config();
 var express = require('express');
+var Airtable = require('airtable');
+var base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_KEY);
+var axios = require('axios');
 var expressApp = express();
+var router = express.Router();
+
+expressApp.use(express.urlencoded({ extended: false }));
+expressApp.use(express.json());
+
 /**
  * A Bot for Slack!
  */
-
 
 /**
  * Define a function for initiating a conversation on installation
@@ -82,7 +89,69 @@ controller.on('rtm_close', function (bot) {
 /**
  * Core bot logic goes here!
  */
-// BEGIN EDITING HERE!
+
+router.post('/quote', (req, res) => {
+    if (req.body.quote) {
+        base('Quotes').create({
+            "quote": req.body.quote
+        }, function (err, record) {
+            if (err) { console.error(err); return; }
+            console.log(record.getId());
+            res.send('quote added!');
+        });
+    } else {
+        res.send('no quote specified');
+    }
+});
+
+router.get('/list', (req, res) => {
+    res.json(billQuotes);
+});
+
+router.get('/', (req, res) => {
+    const html = `<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>bill-bot</title>
+    </head>
+    <body>
+    <form action="/quote" method="POST">
+        New Quote:<br>
+        <input type="text" name="quote" placeholder="Enter something Bill says...">                
+        <br><br>
+        <input type="submit" value="Submit">
+    </form> 
+    </body>
+    </html>`;
+    res.send(html);
+});
+
+expressApp.use('/', router);
+
+var billQuotes = [];
+base('Quotes').select({
+    // Selecting the first 3 records in Grid view:
+    maxRecords: 300,
+    view: "Grid view"
+}).eachPage(function page(records, fetchNextPage) {
+    // This function (`page`) will get called for each page of records.
+
+    records.forEach(function (record) {
+        billQuotes.push(record.get('quote'));
+        console.log('Retrieved', record.get('Name'));
+    });
+
+    // To fetch the next page of records, call `fetchNextPage`.
+    // If there are more records, `page` will get called again.
+    // If there are no more records, `done` will get called.
+    fetchNextPage();
+
+}, function done(err) {
+    if (err) { console.error(err); return; }
+});
 
 controller.on('bot_channel_join', function (bot, message) {
     bot.reply(message, "What do you want???")
@@ -92,15 +161,15 @@ controller.hears('hello', 'direct_message', function (bot, message) {
     bot.reply(message, 'Hello!');
 });
 
-controller.hears(['think', 'idea', 'why'], 'direct_mention,mention,direct_message', function (bot, message) {
-    var billQuotes = [
-        'That is terrible!', 
-        'Why would they do it that way?', 
-        'Of course they\'d do it the dumbest way possible', 
-        'It\'s the Trialcard way.', 'This is Trialcard!', 
-        'I hate this almost as much as I hate your face!', 
-        'I don\'t know what you\'re talking about.'
-    ];
+controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help'], 'direct_mention,mention,direct_message', function (bot, message) {
+    // var billQuotes = [
+    //     'That is terrible!',
+    //     'Why would they do it that way?',
+    //     'Of course they\'d do it the dumbest way possible',
+    //     'It\'s the Trialcard way.', 'This is Trialcard!',
+    //     'I hate this almost as much as I hate your face!',
+    //     'I don\'t know what you\'re talking about.'
+    // ];
     var billMessage = billQuotes[Math.floor(Math.random() * billQuotes.length)];
     bot.reply(message, billMessage);
 });
@@ -122,6 +191,6 @@ controller.on('direct_message,mention,direct_mention', function (bot, message) {
     });
 });
 
-expressApp.listen(process.env.PORT, function(){
+expressApp.listen(process.env.PORT, function () {
     console.log('started bill-bot');
 });
