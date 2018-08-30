@@ -89,29 +89,6 @@ controller.on('rtm_close', function (bot) {
 /**
  * Core bot logic goes here!
  */
-var billQuotes = [];
-var tempQuotes = [];
-base('Quotes').select({
-    // Selecting the first 3 records in Grid view:
-    maxRecords: 300,
-    view: "Grid view"
-}).eachPage(function page(records, fetchNextPage) {
-    // This function (`page`) will get called for each page of records.
-
-    records.forEach(function (record) {
-        tempQuotes.push(record.get('quote'));
-        console.log('Retrieved', record.get('Name'));
-    });
-
-    // To fetch the next page of records, call `fetchNextPage`.
-    // If there are more records, `page` will get called again.
-    // If there are no more records, `done` will get called.
-    fetchNextPage();
-
-}, function done(err) {        
-    if (err) { console.error(err); return; }    
-    billQuotes = tempQuotes;
-});
 
 router.post('/quote', (req, res) => {
     if (req.body.quote) {
@@ -119,7 +96,7 @@ router.post('/quote', (req, res) => {
             "quote": req.body.quote
         }, function (err, record) {
             if (err) { console.error(err); return; }
-            console.log(record.getId());
+            console.log(record.getId());            
             res.send('quote added!');
         });
     } else {
@@ -128,7 +105,9 @@ router.post('/quote', (req, res) => {
 });
 
 router.get('/list', (req, res) => {
-    res.json(billQuotes);
+    getQuotes((quotes) => {
+        res.json(quotes);
+    });
 });
 
 router.get('/', (req, res) => {
@@ -163,6 +142,14 @@ controller.hears('hello', 'direct_message', function (bot, message) {
 });
 
 controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help'], 'direct_mention,mention,direct_message', function (bot, message) {
+    getQuotes((quotes) => {
+        var billMessage = quotes[Math.floor(Math.random() * quotes.length)];
+        bot.reply(message, billMessage);
+    });
+});
+
+function getQuotes(cb) {
+    var tempQuotes = [];
     base('Quotes').select({
         // Selecting the first 3 records in Grid view:
         maxRecords: 300,
@@ -180,13 +167,11 @@ controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help'], 'direct_me
         // If there are no more records, `done` will get called.
         fetchNextPage();
 
-    }, function done(err) {        
+    }, function done(err) {
         if (err) { console.error(err); return; }
-        billQuotes = tempQuotes;
-        var billMessage = billQuotes[Math.floor(Math.random() * billQuotes.length)];
-        bot.reply(message, billMessage);
+        cb(tempQuotes);
     });
-});
+}
 
 /**
  * AN example of what could be:
