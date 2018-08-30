@@ -89,6 +89,7 @@ controller.on('rtm_close', function (bot) {
 /**
  * Core bot logic goes here!
  */
+var billQuotes = [];
 
 router.post('/quote', (req, res) => {
     if (req.body.quote) {
@@ -131,9 +132,6 @@ router.get('/', (req, res) => {
 
 expressApp.use('/', router);
 
-var billQuotes = [];
-
-
 controller.on('bot_channel_join', function (bot, message) {
     bot.reply(message, "What do you want???")
 });
@@ -143,7 +141,6 @@ controller.hears('hello', 'direct_message', function (bot, message) {
 });
 
 controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help'], 'direct_mention,mention,direct_message', function (bot, message) {
-    var billQuotes = [];
     base('Quotes').select({
         // Selecting the first 3 records in Grid view:
         maxRecords: 300,
