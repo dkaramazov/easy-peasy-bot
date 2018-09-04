@@ -90,6 +90,11 @@ controller.on('rtm_close', function (bot) {
  * Core bot logic goes here!
  */
 
+var http = require('http');
+setInterval(function() {
+    http.get(`https://vast-beach-16407.herokuapp.com/`);
+}, 300000);
+
 router.post('/quote', (req, res) => {
     if (req.body.quote) {
         base('Quotes').create({
@@ -141,32 +146,23 @@ controller.hears('hello', 'direct_message', function (bot, message) {
     bot.reply(message, 'Hello!');
 });
 
-controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help'], 'direct_mention,mention,direct_message', function (bot, message) {
-    getQuotes((quotes) => {
-        var billMessage = quotes[Math.floor(Math.random() * quotes.length)];
-        bot.reply(message, billMessage);
+controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help', 'what'], 'direct_mention,mention,direct_message', function (bot, message) {
+    getQuotes((quotes) => {        
+        bot.reply(message, quotes[Math.floor(Math.random() * quotes.length)]);
     });
 });
 
 function getQuotes(cb) {
     var tempQuotes = [];
     base('Quotes').select({
-        // Selecting the first 3 records in Grid view:
         maxRecords: 300,
         view: "Grid view"
     }).eachPage(function page(records, fetchNextPage) {
-        // This function (`page`) will get called for each page of records.
-
         records.forEach(function (record) {
             tempQuotes.push(record.get('quote'));
             console.log('Retrieved', record.get('Name'));
         });
-
-        // To fetch the next page of records, call `fetchNextPage`.
-        // If there are more records, `page` will get called again.
-        // If there are no more records, `done` will get called.
         fetchNextPage();
-
     }, function done(err) {
         if (err) { console.error(err); return; }
         cb(tempQuotes);
