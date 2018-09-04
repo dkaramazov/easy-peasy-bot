@@ -90,10 +90,7 @@ controller.on('rtm_close', function (bot) {
  * Core bot logic goes here!
  */
 
-var http = require('http');
-setInterval(function() {
-    http.get(`https://vast-beach-16407.herokuapp.com/`);
-}, 300000);
+
 
 router.post('/quote', (req, res) => {
     if (req.body.quote) {
