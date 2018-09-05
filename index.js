@@ -139,8 +139,8 @@ controller.on('bot_channel_join', function (bot, message) {
     bot.reply(message, "What do you want???")
 });
 
-controller.hears('hello', 'direct_message', function (bot, message) {
-    bot.reply(message, 'Hello!');
+controller.hears('gateway', 'ambient,message_received', function (bot, message) {
+    bot.reply(message, 'DRISCOLL!');
 });
 
 controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help', 'what'], 'direct_mention,mention,direct_message', function (bot, message) {
