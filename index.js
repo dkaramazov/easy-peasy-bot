@@ -140,7 +140,7 @@ controller.on('bot_channel_join', function (bot, message) {
 });
 
 controller.hears('gateway', 'ambient,message_received', function (bot, message) {
-    bot.reply(message, 'DRISCOLL!');
+    bot.reply(message, 'DRISCOLLLLLLL!!!');
 });
 
 controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help', 'what'], 'direct_mention,mention,direct_message', function (bot, message) {
