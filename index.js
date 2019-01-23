@@ -143,9 +143,15 @@ controller.hears('gateway', 'ambient,message_received', function (bot, message) 
     bot.reply(message, 'DRISCOLLLLLLL!!!');
 });
 
-controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help', 'what'], 'direct_mention,mention,direct_message', function (bot, message) {
+controller.hears(['think', 'gateway', 'idea', 'why', 'like', 'problem', 'help', 'what'], 'direct_mention,mention,direct_message', function (bot, message) {
     getQuotes((quotes) => {        
-        bot.reply(message, quotes[Math.floor(Math.random() * quotes.length)]);
+        var reply = '';
+        if(message === 'gateway'){
+            reply = 'Dammit Driscoll!!!';
+        } else {
+            reply = quotes[Math.floor(Math.random() * quotes.length)];
+        }
+        bot.reply(message, reply);
     });
 });
 

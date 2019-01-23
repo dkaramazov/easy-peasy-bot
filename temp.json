@@ -1,0 +1,440 @@
+{
+    "tblg0IK7Gv0cL4NMW": {
+        "id": "tblg0IK7Gv0cL4NMW",
+        "name": "Contacts",
+        "columns": [
+            {
+                "id": "fldzz4Tdi7SBfdJw1",
+                "name": "Contact Form",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:38"
+            },
+            {
+                "id": "fldGxa5cC7ROQ3OFu",
+                "name": "Name",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:39"
+            },
+            {
+                "id": "fldm3RpoXeUn1XVMd",
+                "name": "Your Fiancé's Name:",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:40"
+            },
+            {
+                "id": "fldo6BQYSt6vULeV3",
+                "name": "Email Address:",
+                "type": "text",
+                "typeOptions": {
+                    "validatorName": "email"
+                },
+                "$$hashKey": "object:41"
+            },
+            {
+                "id": "fldMq5Pdg8LB2BW1K",
+                "name": "Where did you hear about us?",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:42"
+            },
+            {
+                "id": "fldoneNPiGvSxoKvK",
+                "name": "Wedding Date:",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:43"
+            },
+            {
+                "id": "fldIYwHM00nTs1Sw0",
+                "name": "Wedding Venue/Location:",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:44"
+            },
+            {
+                "id": "fldiE9fP5vhUVqL1v",
+                "name": "Wedding Video Budget:",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:45"
+            },
+            {
+                "id": "fldhLR9PnVNluzcQT",
+                "name": "Tell us any other details about your wedding that may help us!",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:46"
+            },
+            {
+                "id": "fldASIulGNF23ixs6",
+                "name": "Coordinator",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:47"
+            },
+            {
+                "id": "fldfJy8yfrWLS5g56",
+                "name": "Quality",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:48"
+            },
+            {
+                "id": "fld0n99N2dNXACQ7U",
+                "name": "Referral",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:49"
+            },
+            {
+                "id": "fldI5ZKEeN9oGm7RQ",
+                "name": "Replied",
+                "type": "checkbox",
+                "typeOptions": {
+                    "color": "green",
+                    "icon": "check"
+                },
+                "$$hashKey": "object:50"
+            },
+            {
+                "id": "fldPFCAX8uWfbngua",
+                "name": "Replies",
+                "type": "foreignKey",
+                "typeOptions": {
+                    "foreignTableId": "tblmfM18BRojixnJ3",
+                    "symmetricColumnId": "fldAQ7ssHv1H2P3w1",
+                    "relationship": "many"
+                },
+                "foreignTable": "tblmfM18BRojixnJ3",
+                "$$hashKey": "object:51"
+            },
+            {
+                "id": "fldztKFdWmWWNUgXC",
+                "name": "Venue Name",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:52"
+            },
+            {
+                "id": "fldFx29U0eJBijopW",
+                "name": "Archived",
+                "type": "checkbox",
+                "typeOptions": {
+                    "color": "green",
+                    "icon": "check"
+                },
+                "$$hashKey": "object:53"
+            },
+            {
+                "id": "fld8ROAKP0U6cctzT",
+                "name": "Created_Date",
+                "type": "formula",
+                "typeOptions": {
+                    "isDateTime": true,
+                    "displayType": "createdTime",
+                    "timeZone": "client",
+                    "formulaTextParsed": "CREATED_TIME()",
+                    "dependencies": {
+                        "referencedColumnIdsForValue": []
+                    },
+                    "resultType": "date"
+                },
+                "$$hashKey": "object:54"
+            }
+        ],
+        "primaryColumnName": "Contact Form",
+        "defaultView": {
+            "id": "viwqD4xgcM6H9ypSU",
+            "name": "Finished"
+        },
+        "isEmptyDueToFilter": false,
+        "isEmpty": false,
+        "nameForUrl": "contacts",
+        "$$hashKey": "object:3",
+        "numRecordsToList": 3
+    },
+    "tbl2XgrLSy6VeOJ3I": {
+        "id": "tbl2XgrLSy6VeOJ3I",
+        "name": "Templates",
+        "columns": [
+            {
+                "id": "fldspK0PhRGu7SQDV",
+                "name": "Title",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:249"
+            },
+            {
+                "id": "fldNUWRg2f84yx4Ej",
+                "name": "Body",
+                "type": "multilineText",
+                "typeOptions": null,
+                "$$hashKey": "object:250"
+            },
+            {
+                "id": "fld0x2nS2Ub8Wx5Kx",
+                "name": "Created Date",
+                "type": "formula",
+                "typeOptions": {
+                    "isDateTime": false,
+                    "displayType": "createdTime",
+                    "timeZone": "client",
+                    "dateFormat": "US",
+                    "formulaTextParsed": "CREATED_TIME()",
+                    "dependencies": {
+                        "referencedColumnIdsForValue": []
+                    },
+                    "resultType": "date"
+                },
+                "$$hashKey": "object:251"
+            },
+            {
+                "id": "fldh6YblL6c8irXba",
+                "name": "User",
+                "type": "foreignKey",
+                "typeOptions": {
+                    "relationship": "many",
+                    "foreignTableId": "tbl4DnqAyAloHPcCQ",
+                    "symmetricColumnId": "fldJzLUPBqxL8owq7"
+                },
+                "foreignTable": "tbl4DnqAyAloHPcCQ",
+                "$$hashKey": "object:252"
+            },
+            {
+                "id": "fldbMMPgesQ63Jo34",
+                "name": "Replies",
+                "type": "foreignKey",
+                "typeOptions": {
+                    "foreignTableId": "tblmfM18BRojixnJ3",
+                    "symmetricColumnId": "fldAWW6rNLlXb11qV",
+                    "relationship": "many"
+                },
+                "foreignTable": "tblmfM18BRojixnJ3",
+                "$$hashKey": "object:253"
+            },
+            {
+                "id": "fldB2tEyh552bpG8B",
+                "name": "Subject",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:254"
+            },
+            {
+                "id": "fldqwY3NYOa6Pzpbj",
+                "name": "Created_Date",
+                "type": "formula",
+                "typeOptions": {
+                    "isDateTime": true,
+                    "displayType": "createdTime",
+                    "timeZone": "client",
+                    "formulaTextParsed": "CREATED_TIME()",
+                    "dependencies": {
+                        "referencedColumnIdsForValue": []
+                    },
+                    "resultType": "date"
+                },
+                "$$hashKey": "object:255"
+            }
+        ],
+        "primaryColumnName": "Title",
+        "defaultView": {
+            "id": "viwMh98nM7cAageFG",
+            "name": "Grid view"
+        },
+        "isEmptyDueToFilter": false,
+        "isEmpty": false,
+        "nameForUrl": "templates",
+        "$$hashKey": "object:4",
+        "numRecordsToList": 3
+    },
+    "tbl4DnqAyAloHPcCQ": {
+        "id": "tbl4DnqAyAloHPcCQ",
+        "name": "Users",
+        "columns": [
+            {
+                "id": "fldzZd9xD7tct8mkF",
+                "name": "GoogleID",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:329"
+            },
+            {
+                "id": "fldhXj1jJjtegZgcN",
+                "name": "isAdmin",
+                "type": "checkbox",
+                "typeOptions": {
+                    "color": "green",
+                    "icon": "check"
+                },
+                "$$hashKey": "object:330"
+            },
+            {
+                "id": "fld3geW3q5WMm28sR",
+                "name": "allowAccess",
+                "type": "checkbox",
+                "typeOptions": {
+                    "color": "green",
+                    "icon": "check"
+                },
+                "$$hashKey": "object:331"
+            },
+            {
+                "id": "fld31AnMX1j1ah4mQ",
+                "name": "Last Name",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:332"
+            },
+            {
+                "id": "fldCmjxdgzZNuboxL",
+                "name": "First Name",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:333"
+            },
+            {
+                "id": "fldpYNMeo0tINz0LA",
+                "name": "Email",
+                "type": "text",
+                "typeOptions": {
+                    "validatorName": "email"
+                },
+                "$$hashKey": "object:334"
+            },
+            {
+                "id": "fldscSBQDp8KY6JS3",
+                "name": "Image",
+                "type": "text",
+                "typeOptions": null,
+                "$$hashKey": "object:335"
+            },
+            {
+                "id": "fldJzLUPBqxL8owq7",
+                "name": "Templates",
+                "type": "foreignKey",
+                "typeOptions": {
+                    "foreignTableId": "tbl2XgrLSy6VeOJ3I",
+                    "symmetricColumnId": "fldh6YblL6c8irXba",
+                    "relationship": "many"
+                },
+                "foreignTable": "tbl2XgrLSy6VeOJ3I",
+                "$$hashKey": "object:336"
+            },
+            {
+                "id": "fldCp044taOxEzV87",
+                "name": "mobile_number",
+                "type": "phone",
+                "typeOptions": null,
+                "$$hashKey": "object:337"
+            }
+        ],
+        "primaryColumnName": "GoogleID",
+        "defaultView": {
+            "id": "viwGyA1KRIY6VQn3Q",
+            "name": "Grid view"
+        },
+        "isEmptyDueToFilter": false,
+        "isEmpty": false,
+        "nameForUrl": "users",
+        "$$hashKey": "object:5",
+        "numRecordsToList": 3
+    },
+    "tblmfM18BRojixnJ3": {
+        "id": "tblmfM18BRojixnJ3",
+        "name": "Replies",
+        "columns": [
+            {
+                "id": "fldFJHi7VH9GSKSoA",
+                "name": "Reply Time",
+                "type": "formula",
+                "typeOptions": {
+                    "formulaTextParsed": "column_value_fldBcWTGee1ET4N51",
+                    "dependencies": {
+                        "referencedColumnIdsForValue": [
+                            "fldBcWTGee1ET4N51"
+                        ]
+                    },
+                    "resultType": "date"
+                },
+                "$$hashKey": "object:426"
+            },
+            {
+                "id": "fldCqT1zom8HTCdBI",
+                "name": "Body",
+                "type": "multilineText",
+                "typeOptions": null,
+                "$$hashKey": "object:427"
+            },
+            {
+                "id": "fldAWW6rNLlXb11qV",
+                "name": "Template",
+                "type": "foreignKey",
+                "typeOptions": {
+                    "relationship": "one",
+                    "foreignTableId": "tbl2XgrLSy6VeOJ3I",
+                    "symmetricColumnId": "fldbMMPgesQ63Jo34"
+                },
+                "foreignTable": "tbl2XgrLSy6VeOJ3I",
+                "$$hashKey": "object:428"
+            },
+            {
+                "id": "fldBcWTGee1ET4N51",
+                "name": "Date",
+                "type": "formula",
+                "typeOptions": {
+                    "isDateTime": true,
+                    "displayType": "createdTime",
+                    "timeZone": "client",
+                    "timeFormat": "12hour",
+                    "formulaTextParsed": "CREATED_TIME()",
+                    "dependencies": {
+                        "referencedColumnIdsForValue": []
+                    },
+                    "resultType": "date"
+                },
+                "$$hashKey": "object:429"
+            },
+            {
+                "id": "fldAQ7ssHv1H2P3w1",
+                "name": "Contact",
+                "type": "foreignKey",
+                "typeOptions": {
+                    "relationship": "one",
+                    "foreignTableId": "tblg0IK7Gv0cL4NMW",
+                    "symmetricColumnId": "fldPFCAX8uWfbngua"
+                },
+                "foreignTable": "tblg0IK7Gv0cL4NMW",
+                "$$hashKey": "object:430"
+            },
+            {
+                "id": "fldGJz5dXQqY7Lgpz",
+                "name": "Created_Date",
+                "type": "formula",
+                "typeOptions": {
+                    "isDateTime": true,
+                    "displayType": "createdTime",
+                    "timeZone": "client",
+                    "formulaTextParsed": "CREATED_TIME()",
+                    "dependencies": {
+                        "referencedColumnIdsForValue": []
+                    },
+                    "resultType": "date"
+                },
+                "$$hashKey": "object:431"
+            }
+        ],
+        "primaryColumnName": "Reply Time",
+        "defaultView": {
+            "id": "viwAhriSWQVPhqbhC",
+            "name": "Grid view"
+        },
+        "isEmptyDueToFilter": false,
+        "isEmpty": false,
+        "nameForUrl": "replies",
+        "$$hashKey": "object:6",
+        "numRecordsToList": 3
+    }
+}
