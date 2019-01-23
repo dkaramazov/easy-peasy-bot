@@ -142,6 +142,18 @@ controller.on('bot_channel_join', function (bot, message) {
 controller.hears('gateway', 'ambient,message_received', function (bot, message) {
     bot.reply(message, 'DRISCOLLLLLLL!!!');
 });
+controller.hears('pointing', 'ambient,message_received', function (bot, message) {
+    var pointing = 
+    `UGHHHH, you guys...
+    1 = 1 hour 
+    2 = 2 to 4 hours
+    3 = 5 to 8 hours
+    5 = 2-4 days 
+    8 = 5 or more days/1 week or more
+    13 = 1 sprint/10 days
+    20 = PBI needs to be broken down more`;
+    bot.reply(message, pointing);
+});
 
 controller.hears(['think', 'idea', 'why', 'like', 'problem', 'help', 'what'], 'direct_mention,mention,direct_message', function (bot, message) {
     getQuotes((quotes) => {        
